@@ -30,13 +30,12 @@ RUN --mount=type=cache,target=/var/cache/apt \
 
 WORKDIR /
 RUN --mount=type=cache,target=/root/.cache/pip \
-  git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git && \
-  cd stable-diffusion-webui && \
-  git reset --hard cf2772fab0af5573da775e7437e6acdca424f26e && \
+  git clone https://github.com/lllyasviel/stable-diffusion-webui-forge.git && \
+  cd stable-diffusion-webui-forge && \
   pip install -r requirements_versions.txt
 
 
-ENV ROOT=/stable-diffusion-webui
+ENV ROOT=/stable-diffusion-webui-forge
 
 COPY --from=download /repositories/ ${ROOT}/repositories/
 RUN mkdir ${ROOT}/interrogate && cp ${ROOT}/repositories/clip-interrogator/clip_interrogator/data/* ${ROOT}/interrogate
@@ -65,6 +64,6 @@ RUN \
 WORKDIR ${ROOT}
 ENV NVIDIA_VISIBLE_DEVICES=all
 ENV CLI_ARGS=""
-EXPOSE 7860
+EXPOSE 7861
 ENTRYPOINT ["/docker/entrypoint.sh"]
-CMD python -u webui.py --listen --port 7860 ${CLI_ARGS}
+CMD python -u webui.py --listen --port 7861 ${CLI_ARGS}

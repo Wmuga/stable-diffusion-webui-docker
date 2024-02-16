@@ -31,7 +31,17 @@ services:
     build: ./services/AUTOMATIC1111
     image: sd-auto:71
     environment:
-      - CLI_ARGS=--allow-code --medvram --xformers --enable-insecure-extension-access --api
+      - CLI_ARGS=--allow-code --lowvram --xformers --enable-insecure-extension-access --api
+  
+  forge: &forge
+    <<: *base_service
+    profiles: ["forge"]
+    build: ./services/forge
+    image: sd-forge:1
+    environment:
+      - CLI_ARGS=--xformers
+    ports:
+      - 7861:7861
 
   auto-cpu:
     <<: *automatic
@@ -61,8 +71,10 @@ services:
     profiles: ["comfy"]
     build: ./services/comfy/
     image: sd-comfy:6
+    ports:
+        - "8188:7860"
     environment:
-      - CLI_ARGS=
+      - CLI_ARGS=--enable-cors-header
 
 
   comfy-cpu:
