@@ -50,9 +50,11 @@ This license of this software forbids you from sharing any content that violates
 
 ## Thanks
 
-Special thanks to everyone behind these awesome projects, without them, none of this would have been possible:
+Thanks to AbdBarho for [original repo](https://github.com/AbdBarho/stable-diffusion-webui-docker)
 
+Special thanks to everyone behind these awesome projects, without them, none of this would have been possible:
 - [AUTOMATIC1111/stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui)
+- [lllyasviel/stable-diffusion-webui-forge](https://github.com/lllyasviel/stable-diffusion-webui-forge)
 - [InvokeAI](https://github.com/invoke-ai/InvokeAI)
 - [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
 - [CompVis/stable-diffusion](https://github.com/CompVis/stable-diffusion)
