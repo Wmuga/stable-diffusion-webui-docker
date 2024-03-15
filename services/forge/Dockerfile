@@ -61,9 +61,11 @@ RUN \
   sed -i 's/in_app_dir = .*/in_app_dir = True/g' /opt/conda/lib/python3.10/site-packages/gradio/routes.py && \
   git config --global --add safe.directory '*'
 
+COPY notification.mp3 ${ROOT}/
 WORKDIR ${ROOT}
 ENV NVIDIA_VISIBLE_DEVICES=all
 ENV CLI_ARGS=""
 EXPOSE 7861
 ENTRYPOINT ["/docker/entrypoint.sh"]
+RUN git pull
 CMD python -u webui.py --listen --port 7861 ${CLI_ARGS}
