@@ -39,6 +39,13 @@ RUN --mount=type=cache,target=/root/.cache/pip \
   pip install -U opencv-python-headless triton /xformers-0.0.21-cp310-cp310-linux_x86_64.whl && \
   python3 -c "from patchmatch import patch_match"
 
+RUN --mount=type=cache,target=/root/.cache/pip \
+  pip uninstall -y torchmetrics && \
+  pip install torchmetrics==0.11.4 && \
+  pip uninstall -y huggingface-hub && \
+  pip install huggingface-hub==0.18.0 && \
+  pip uninstall -y transformers && \
+  pip install transformers==4.35.2
 
 COPY . /docker/
 
